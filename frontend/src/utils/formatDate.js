@@ -1,0 +1,11 @@
+// Utility function to format dates consistently across the app
+export default function formatDate(dateString) {
+  if (!dateString) return "";
+
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-IN", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
