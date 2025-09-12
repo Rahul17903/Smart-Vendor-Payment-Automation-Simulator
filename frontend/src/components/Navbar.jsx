@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className="flex gap-4 items-center">
         {user ? (
           <>
-            <Link to="/dashboard" className="hover:underline">Dashboard</Link>
+            <Link to="/" className="hover:underline">Dashboard</Link>
             <Link to="/upload" className="hover:underline">Upload</Link>
             <button
               onClick={handleLogout}

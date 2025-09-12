@@ -9,8 +9,8 @@ import DashboardPage from "./pages/DashboardPage";
 import InvoiceDetailsPage from "./pages/InvoiceDetailsPage";
 
 function PrivateRoute({ children }) {
-  const { user } = React.useContext(AuthContext);
-  return user ? children : <Navigate to="/login" replace />;
+  const { token  } = React.useContext(AuthContext);
+  return token ? children : <Navigate to="/login" replace />;
 }
 
 export default function App() {
