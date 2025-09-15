@@ -28,6 +28,15 @@ This project is submitted as part of the assignment.
 
 ---
 
+## Sample Invoice Data
+This section contains a sample CSV file with invoice records. The data is provided for testing and demonstration purposes, so you can easily upload invoices and verify how the system processes them.
+
+## 🔐 Credentials for authentication (for testing)
+
+| Email            | Password  |
+| -----------------| ----------|
+| rahul@gmail.com  | 123456    |
+
 ## ⚙️ Setup Instructions
 
 ### 1. Clone the repository
