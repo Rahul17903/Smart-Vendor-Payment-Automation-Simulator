@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const InvoiceDetailsPage = () => {
   const { id } = useParams();
@@ -7,7 +6,6 @@ const InvoiceDetailsPage = () => {
   // For now, just a placeholder (you can fetch invoice by ID later)
   return (
     <>
-      <Navbar />
       <div className="p-8">
         <h1 className="text-xl font-bold">Invoice Details</h1>
         <p className="mt-4">Invoice ID: {id}</p>

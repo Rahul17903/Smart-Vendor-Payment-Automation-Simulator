@@ -7,9 +7,15 @@ import SignupPage from "./pages/SignupPage";
 import UploadPage from "./pages/UploadPage";
 import DashboardPage from "./pages/DashboardPage";
 import InvoiceDetailsPage from "./pages/InvoiceDetailsPage";
+import MainLayout from "./pages/MainLayout";
 
 function PrivateRoute({ children }) {
-  const { token  } = React.useContext(AuthContext);
+  const { token, loading } = React.useContext(AuthContext);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return token ? children : <Navigate to="/login" replace />;
 }
 
@@ -18,45 +24,41 @@ export default function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          {/* Public Routes */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          {/* Routes inside MainLayout (with Navbar + Footer) */}
+          <Route element={<MainLayout />}>
+            {/* Public Pages with Navbar + Footer */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
 
-          {/* Protected Routes */}
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <DashboardPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/upload"
-            element={
-              <PrivateRoute>
-                <UploadPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/invoice/:id"
-            element={
-              <PrivateRoute>
-                <InvoiceDetailsPage />
-              </PrivateRoute>
-            }
-          />
+            {/* Protected Pages with Navbar + Footer */}
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <DashboardPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/upload"
+              element={
+                <PrivateRoute>
+                  <UploadPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/invoice/:id"
+              element={
+                <PrivateRoute>
+                  <InvoiceDetailsPage />
+                </PrivateRoute>
+              }
+            />
+          </Route>
 
-          {/* Catch-all → redirect to dashboard if logged in, else login */}
-          <Route
-            path="*"
-            element={
-              <PrivateRoute>
-                <DashboardPage />
-              </PrivateRoute>
-            }
-          />
+          {/* Catch-all */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </AuthProvider>

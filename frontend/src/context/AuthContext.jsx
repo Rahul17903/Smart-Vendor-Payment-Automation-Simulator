@@ -5,9 +5,9 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true); // ✅ loading state
 
   useEffect(() => {
-    // localStorage থেকে data restore করা
     const savedUser = localStorage.getItem("user");
     const savedToken = localStorage.getItem("token");
 
@@ -15,6 +15,8 @@ export const AuthProvider = ({ children }) => {
       setUser(JSON.parse(savedUser));
       setToken(savedToken);
     }
+
+    setLoading(false); // ✅ Done loading after checking storage
   }, []);
 
   const login = (user, token) => {
@@ -32,7 +34,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
