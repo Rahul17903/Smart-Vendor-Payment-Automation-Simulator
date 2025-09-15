@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between items-center p-4 bg-gray-800 text-white">
-      <h1 className="font-bold text-lg">💰 Smart Vendor Payment</h1>
+      <Link to='/'><h1 className="font-bold text-lg">💰 Smart Vendor Payment</h1></Link>
       <div className="flex gap-4 items-center">
         {user ? (
           <>
