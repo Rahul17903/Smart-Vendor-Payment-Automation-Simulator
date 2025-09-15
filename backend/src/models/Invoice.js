@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const invoiceSchema = new mongoose.Schema(
   {
@@ -21,6 +21,14 @@ const invoiceSchema = new mongoose.Schema(
     discountSuggested: {
       type: String,
       default: null,
+    },
+    discountPercent: {
+      type: Number,
+      default: 0,
+    },
+    discountAmount: {
+      type: Number,
+      default: 0,
     },
     approvalStatus: {
       type: String,

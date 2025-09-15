@@ -24,7 +24,7 @@ This project is submitted as part of the assignment.
 ## 🛠 Tech Stack
 **Frontend**: React (Vite), TailwindCSS, Axios, React Router  
 **Backend**: Node.js, Express.js, MongoDB, JWT, Bcrypt  
-**Deployment**: Vercel (frontend) + Render/Railway (backend)
+**Deployment**: Vercel (frontend) + Render (backend)
 
 ---
 
@@ -32,8 +32,8 @@ This project is submitted as part of the assignment.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/<your-username>/smart-vendor-payment.git
-cd smart-vendor-payment
+git clone https://github.com/Rahul17903/Smart-Vendor-Payment-Automation-Simulator.git
+cd Smart-Vendor-Payment-Automation-Simulator
 
 ```
 ### 2. Backend Setup

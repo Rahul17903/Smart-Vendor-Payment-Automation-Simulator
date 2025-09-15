@@ -52,24 +52,21 @@ const DashboardPage = () => {
   };
 
   const calculateSummary = (data) => {
-    const totalInvoices = data.length;
-    const duplicates = data.filter((inv) => inv.isDuplicate).length;
-    const approved = data.filter(
-      (inv) => inv.approvalStatus === "Approved"
-    ).length;
-    const pending = data.filter(
-      (inv) => inv.approvalStatus === "Manager approval required"
-    ).length;
-    const rejected = data.filter(
-      (inv) => inv.approvalStatus === "Rejected"
-    ).length;
+   const totalInvoices = data.length;
+  const duplicates = data.filter((inv) => inv.isDuplicate).length;
+  const approved = data.filter((inv) => inv.approvalStatus === "Approved").length;
+  const pending = data.filter((inv) => inv.approvalStatus === "Manager approval required").length;
+  const rejected = data.filter((inv) => inv.approvalStatus === "Rejected").length;
 
-    const estimatedSavings = data.reduce((sum, inv) => {
-      if (inv.discountSuggested) {
-        return sum + (inv.amount * inv.discountSuggested) / 100;
-      }
-      return sum;
-    }, 0);
+  // ✅ Savings calculation (skip undefined/null/empty safely)
+  const estimatedSavings = data.reduce((sum, inv) => {
+    if (!inv.discountAmount) return sum; // skip undefined / null / empty string
+
+    const str = String(inv.discountAmount).replace(/[^0-9.-]+/g, ""); 
+    const discount = parseFloat(str);
+
+    return sum + (isNaN(discount) ? 0 : discount);
+  }, 0);
 
     setSummary({
       totalInvoices,
@@ -147,7 +144,7 @@ const DashboardPage = () => {
     },
     {
       title: "Estimated Savings",
-      value: `₹${summary.estimatedSavings.toFixed(2)}`,
+      value: `₹${Number(summary.estimatedSavings).toFixed(2)}`,
       icon: <DollarSign size={32} />,
       color: "from-purple-500 to-violet-600",
     },
@@ -173,7 +170,7 @@ const DashboardPage = () => {
   const COLORS = ["#10b981", "#f59e0b", "#ef4444", "#3b82f6"];
 
   return (
-    <div className="p-8 space-y-10 bg-gray-50 min-h-screen">
+    <div className="p-8 space-y-10 bg-gray-200 min-h-screen">
       {/* Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
         {cards.map((card, index) => (
