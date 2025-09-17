@@ -12,8 +12,8 @@ function Footer() {
         {/* Middle Links */}
         <div className="flex space-x-6 mb-4 md:mb-0">
           <a href="/upload" className="hover:text-white">Upload</a>
-          <a href="/dashboard" className="hover:text-white">Dashboard</a>
-          <a href="https://github.com/your-username/smart-vendor-payment" 
+          <a href="/" className="hover:text-white">Dashboard</a>
+          <a href="https://github.com/Rahul17903/Smart-Vendor-Payment-Automation-Simulator" 
              target="_blank" 
              rel="noreferrer"
              className="hover:text-white">
